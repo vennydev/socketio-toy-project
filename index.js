@@ -13,19 +13,34 @@ io.on('connection', (socket) => {
   });
 });
 
-io.socketsJoin('room1');
+// room workspace 만들기
 
-// make all Socket instances in the "room1" room join the "room2" and "room3" rooms
-io.in('room1').socketsJoin(['room2', 'room3']);
+// const room = io.of('/room');
+// const chat = io.of('/chat');
 
-// make all Socket instances leave the "room1" room
-// io.socketsLeave('room1');
+// room.on('connection', (socket) => {
+//  console.log('room 네임스페이스에 접속');
+//   socket.on('disconnectSockets', () => {
+//     console.log('room 네임스페이스 접속 해제');
+//   });
+// });
 
-// // make all Socket instances in the "room1" room leave the "room2" and "room3" rooms
-// io.in('room1').socketsLeave(['room2', 'room3']);
+// chat.on('connection', (socket) => {
+//   console.log('chat 네임스페이스에 접속');
+//   const req = socket.request;
+//   const {
+//     headers: { referer },
+//   } = req;
+//   const roomId = referer
+//     .split('/')
+//     [referrer.split('/').length - 1].replace(/\?.+/, '');
+//   socket.join(roomId);
 
-// // this also works with a single socket ID
-// io.in(theSocketId).socketsLeave('room1');
+//   socket.on('disconnectSockets', () => {
+//     console.log('chat 네임스페이스 접속 해제');
+//     socket.leave(roomId);
+//   });
+// });
 
 http.listen(port, () => {
   console.log(`Socket.IO server running at http://localhost:${port}/`);
